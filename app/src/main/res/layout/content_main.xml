@@ -7,7 +7,7 @@
 
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/contadorPulsaciones"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -26,6 +26,7 @@
         android:id="@+id/resetea"
        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
+        android:onClick="reseteaContador"
         />
 
     <Button
@@ -35,6 +36,7 @@
         android:id="@+id/incrementa"
         android:layout_above="@id/resetea"
         android:layout_centerHorizontal="true"
+        android:onClick="incrementaContador"
         />
 
     <Button
@@ -44,5 +46,6 @@
         android:id="@+id/decrementa"
         android:layout_below="@id/resetea"
         android:layout_centerHorizontal="true"
+        android:onClick="decrementaContador"
         />
 </RelativeLayout>

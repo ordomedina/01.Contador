@@ -3,6 +3,7 @@ package com.example.contador;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -11,16 +12,13 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
 
     public int contador;
-    TextView textoResultado;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        textoResultado = (TextView) findViewById(R.id.contadorTexto);
         contador= 0;
+        mostrarResultado();
     }
 
     public void incrementaContador(View vista){
@@ -39,13 +37,26 @@ public class MainActivity extends Activity {
 
     public void reseteaContador(View vista){
         EditText numReset= (EditText) findViewById(R.id.reseteo);
+        CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox);
+        Integer aux;
         try{
-            contador = Integer.parseInt(numReset.getText().toString());
+            aux = Integer.parseInt(numReset.getText().toString());
+            if(aux >=0 && !checkBox.isChecked()){
+                contador = aux;
+            }else if(checkBox.isChecked()){
+                contador = Integer.parseInt(numReset.getText().toString());
+            }
         }catch (Exception e){
             contador = 0;
         }
         numReset.setText("");
         mostrarResultado();
+
+
+        InputMethodManager miTeclado = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        miTeclado.hideSoftInputFromWindow(numReset.getWindowToken(),0);
+
+
     }
 
    public void mostrarResultado(){

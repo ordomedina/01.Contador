@@ -74,7 +74,7 @@
             android:text="Resetear" />
 
         <EditText
-            android:id="@+id/n_reseteo"
+            android:id="@+id/reseteo"
             android:layout_width="72sp"
             android:layout_height="wrap_content"
             android:ems="10"

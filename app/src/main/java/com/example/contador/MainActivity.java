@@ -2,7 +2,9 @@ package com.example.contador;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -19,6 +21,22 @@ public class MainActivity extends Activity {
 
         contador= 0;
         mostrarResultado();
+
+        EventoTeclado teclado = new EventoTeclado();
+
+        EditText reseteo = (EditText) findViewById(R.id.reseteo);
+
+        reseteo.setOnEditorActionListener(teclado);
+    }
+
+    class EventoTeclado implements TextView.OnEditorActionListener{
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if(actionId == EditorInfo.IME_ACTION_DONE){
+                reseteaContador(null);
+            }
+            return false;
+        }
     }
 
     public void incrementaContador(View vista){
@@ -63,4 +81,6 @@ public class MainActivity extends Activity {
         TextView textoResultado = (TextView) findViewById(R.id.contadorTexto);
         textoResultado.setText(""+contador);
     }
+
+
 }
